@@ -1,0 +1,16 @@
+h4.muted Categories
+table.table.table-striped.table-condensed
+	thead
+		tr
+			th.span2 Name
+			th Description
+			th.span1 Type
+			th.span2
+				.text-right Balance
+			th.span1
+	tbody
+		foreach categories as category
+			include 'categories_item' exposing category
+.form-actions
+	.btn-group.pull-right
+		a.btn.btn-primary.new(href='/categories/new') New

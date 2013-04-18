@@ -1,0 +1,15 @@
+include 'categories'
+.modal.categories.new
+	.modal-header
+		h4 New
+	-if(category.messages)
+		ul.unstyled.alert.alert-error
+			foreach category.messages as field
+				li=field.message
+	.modal-body
+		include 'form' exposing category
+	.modal-footer
+		.btn-group.pull-right
+			button.save.btn.btn-primary Save
+			button.cancel.btn Cancel
+	

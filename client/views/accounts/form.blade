@@ -1,0 +1,9 @@
+.form-horizontal
+	.control-group(class=nameError)
+		label.control-label(for='account_name') Name
+		.controls
+			input#account_name(type='text', value=account.name)
+	.control-group
+		label.control-label(for='account_description') Description
+		.controls
+			textarea#account_description(rows='2')=account.description

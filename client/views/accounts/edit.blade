@@ -1,0 +1,15 @@
+include 'accounts'
+.modal.accounts.edit
+	.modal-header
+		h4 New
+	-if(account.messages)
+		ul.unstyled.alert.alert-error
+			foreach account.messages as field
+				li=field.message
+	.modal-body
+		include 'form' exposing account
+	.modal-footer
+		.btn-group.pull-right
+			button.save.btn.btn-primary Save
+			button.cancel.btn Cancel
+	

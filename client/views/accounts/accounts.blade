@@ -1,0 +1,15 @@
+h4.muted Accounts
+table.table.table-striped.table-condensed
+	thead
+		tr
+			th.span2 Name
+			th Description
+			th.span1 Default
+			th.span1
+				.text-right Balance
+	tbody
+		foreach accounts as account
+			include 'accounts_item' exposing account
+.form-actions
+	.btn-group.pull-right
+		a.btn.btn-primary.new(href='/accounts/new') New

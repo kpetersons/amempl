@@ -1,0 +1,16 @@
+h4.muted Transactions
+table.table.table-striped.table-condensed
+	thead
+		tr
+			th.span2 Account
+			th Category
+			th.span2 When
+			th.span2
+				.text-right Amount
+			th.span1
+	tbody
+		foreach transactions as transaction
+			include 'transactions_item' exposing transaction
+.form-actions
+	.btn-group.pull-right
+		a.btn.btn-primary.new(href='/transactions/new') New

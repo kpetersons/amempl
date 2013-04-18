@@ -1,0 +1,13 @@
+tr
+	td.span2
+		a.icon-edit(href='/accounts/#{account._id}/edit')
+		!&nbsp;
+		a(href='/accounts/#{account._id}/details')=account_name
+	td=account_description
+	td.span1
+		- if (account_default)
+			.icon-star
+		- else
+			a.default.icon-star-empty(href='#')
+	td.span2
+		.text-right=account_balance

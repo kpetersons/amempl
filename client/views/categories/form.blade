@@ -1,0 +1,18 @@
+.form-horizontal
+	.control-group(class=nameError)
+		label.control-label(for='category_name') Name
+		.controls
+			input#category_name(type='text', value=category.name)
+	.control-group
+		label.control-label(for='category_description') Description
+		.controls
+			textarea#category_description(rows='2')=category.description
+	.control-group(class=typeError)
+		label.control-label(for='category_type') Type
+		.controls
+			label.radio      
+				input#category_type(name='category_type', type='radio', value='income', checked=category_is_income)
+				!Income
+			label.radio
+				input#category_type(name='category_type', type='radio', value='expense', checked=category_is_expense)
+				!Expense

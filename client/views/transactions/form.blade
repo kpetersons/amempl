@@ -1,0 +1,17 @@
+.form-horizontal
+	.control-group(class=accountError)
+		label.control-label(for='transaction_account') Account
+		.controls
+			input#transaction_account(type='text', value=transaction_account)
+	.control-group(class=categoryError)
+		label.control-label(for='transaction_category') Category
+		.controls
+			input#transaction_category(type='text', value=transaction_category)
+	.control-group(class=amountError)
+		label.control-label(for='transaction_amount') Amount
+		.controls
+			input#transaction_amount.text-right(type='text', value=transaction_amount)
+	.control-group(class=whenError)
+		label.control-label(for='transaction_when') When
+		.controls
+			input#transaction_when.text-right(type='text', value=transaction_when)
