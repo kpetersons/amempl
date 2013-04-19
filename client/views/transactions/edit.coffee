@@ -16,6 +16,7 @@ Template['transactions/edit'].events=
 				unless url_return
 					url_return = '/transactions'
 				Meteor.Router.to(url_return)
+				Session.set('url_return', null)
 			Session.set 'editTransaction', transaction
 	'click button.cancel': (event)->    	
 		$('.modal.transactions.edit').modal 'hide'
@@ -23,7 +24,7 @@ Template['transactions/edit'].events=
 		unless url_return
 			url_return = '/transactions'
 		Meteor.Router.to(url_return)
-
+		Session.set('url_return', null)
     
 Template['transactions/edit'].helpers
 	messages: ->

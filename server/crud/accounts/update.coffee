@@ -23,3 +23,10 @@ Meteor.methods
 			$set:
 				selected: true
 		account
+		
+	'Accounts.update_unselected': (account)->
+		_.each Accounts.find().fetch(), (item) ->
+			Accounts.update item._id, 
+				$set: 
+					selected: false
+		account		
