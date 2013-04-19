@@ -5,3 +5,13 @@ Meteor.methods
 		if category.isValid
 			Categories.update(category._id, $set: _.omit(category, ['messages', '_id']))
 		category
+    
+	'Categories.update_selected': (category)->
+		_.each Categories.find().fetch(), (item) ->
+			Categories.update item._id, 
+				$set: 
+					selected: false
+		Categories.update category._id, 
+			$set:
+				selected: true
+		category

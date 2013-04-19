@@ -13,3 +13,13 @@ Meteor.methods
 		Accounts.update account._id, 
 			$set:
 				default: true
+        
+	'Accounts.update_selected': (account)->
+		_.each Accounts.find().fetch(), (item) ->
+			Accounts.update item._id, 
+				$set: 
+					selected: false
+		Accounts.update account._id, 
+			$set:
+				selected: true
+		account

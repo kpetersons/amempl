@@ -1,0 +1,12 @@
+include 'accounts'
+hr
+h5.muted
+	!Account
+	!&nbsp;
+	=account.name
+	!&nbsp;
+	!details
+include '../transactions/nested_transactions' exposing transactions url_prefix
+.form-actions
+	.btn-group.pull-right
+		a.btn.btn-primary.new(href='/accounts/#{account._id}/transactions/new') New

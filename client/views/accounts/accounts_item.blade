@@ -1,8 +1,8 @@
-tr
+tr(class=account_selected)
 	td.span2
 		a.icon-edit(href='/accounts/#{account._id}/edit')
 		!&nbsp;
-		a(href='/accounts/#{account._id}/details')=account_name
+		a.details(href='#')=account_name
 	td=account_description
 	td.span1
 		- if (account_default)

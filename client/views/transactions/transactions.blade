@@ -10,7 +10,7 @@ table.table.table-striped.table-condensed
 			th.span1
 	tbody
 		foreach transactions as transaction
-			include 'transactions_item' exposing transaction
+			include '../transactions/transactions_item' exposing transaction url_prefix
 .form-actions
 	.btn-group.pull-right
 		a.btn.btn-primary.new(href='/transactions/new') New

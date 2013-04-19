@@ -1,12 +1,13 @@
 tr
 	td.span2
-		a.icon-edit(href='/transactions/#{transaction._id}/edit')
+		a.icon-edit(href='#{url_prefix}/transactions/#{transaction._id}/edit')
 		!&nbsp;
-		=transaction_account
-	td=transaction_category
+		a.accounts.details(href='#')=transaction_account
+	td  
+		a.categories.details(href='#')=transaction_category
 	td.span2=transaction_when
 	td.span2
 		.text-right=transaction_amount
 	td.span1
 		.pull-right
-			a.icon-trash(href='/transactions/#{transaction._id}/delete')
+			a.icon-trash(href='#{url_prefix}/transactions/#{transaction._id}/delete')

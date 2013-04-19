@@ -1,0 +1,12 @@
+table.table.table-striped.table-condensed
+	thead
+		tr
+			th.span2 Account
+			th Category
+			th.span2 When
+			th.span2
+				.text-right Amount
+			th.span1
+	tbody
+		foreach nested_transactions as transaction
+			include '../transactions/transactions_item' exposing transaction url_prefix

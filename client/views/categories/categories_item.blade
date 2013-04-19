@@ -1,8 +1,8 @@
-tr
+tr(class=category_selected)
 	td.span2
-		a.icon-edit(href='/categories/#{category._id}/edit')
+		a.icon-edit(href='#')
 		!&nbsp;
-		a(href='/categories/#{category._id}/details')=category_name
+		a.details(href='#')=category_name
 	td=category_description
 	td.span1=category_type
 	td.span2
