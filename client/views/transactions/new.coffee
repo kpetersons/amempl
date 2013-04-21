@@ -22,8 +22,8 @@ Template['transactions/new'].events=
 		url_return = Session.get('url_return')
 		unless url_return
 			url_return = '/transactions'
-			Meteor.Router.to(url_return)
-			Session.set('url_return', null)
+		Meteor.Router.to(url_return)
+		Session.set('url_return', null)
 			
 Template['transactions/new'].helpers
 	messages: ->

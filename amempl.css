@@ -1,1 +1,4 @@
 /* CSS declarations go here */
+.datepicker {
+	z-index: 1999;
+}

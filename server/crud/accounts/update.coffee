@@ -3,30 +3,22 @@ Meteor.methods
 		account = Validator.uniqueness(Accounts, account, 'name')
 		if account.isValid
 			Accounts.update(account._id, $set: _.omit(account, ['messages', '_id']))
+			Transactions.update({account_id: account._id}, {$set: {transaction_account: account.name}}, {multi: true})
 		account
     
 	'Accounts.update_default': (account)->
-		_.each Accounts.find().fetch(), (item) ->
-			Accounts.update item._id, 
-				$set: 
-					default: false
+		Accounts.update({}, {$set: {default: false}}, {multi: true})
 		Accounts.update account._id, 
 			$set:
 				default: true
         
 	'Accounts.update_selected': (account)->
-		_.each Accounts.find().fetch(), (item) ->
-			Accounts.update item._id, 
-				$set: 
-					selected: false
+		Accounts.update({}, {$set: {selected: false}}, {multi: true})
 		Accounts.update account._id, 
 			$set:
 				selected: true
 		account
 		
 	'Accounts.update_unselected': (account)->
-		_.each Accounts.find().fetch(), (item) ->
-			Accounts.update item._id, 
-				$set: 
-					selected: false
+		Accounts.update({}, {$set: {selected: false}}, {multi: true})
 		account		

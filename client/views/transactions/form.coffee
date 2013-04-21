@@ -8,7 +8,10 @@ Template['transactions/form'].rendered= ()->
 		source: (typeahead, query)->
 			Categories.find().map (item) ->
 				item.name
-	)	
+	)
+	$('#transaction_when').datepicker().on('changeDate', (evt)->
+		$('#transaction_when').datepicker('hide')
+	)
 	
 Template['transactions/form'].helpers
   accountError: ->
