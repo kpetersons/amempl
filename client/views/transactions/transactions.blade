@@ -1,7 +1,10 @@
 .row
 	h4.span4.muted Transactions
-	.pull-right		
-		input#filter_field.filter(type='text' style='margin: 10px 0 10px 0;' placeholder='Filter' value=filter)
+	.pull-right
+		.input-append.input-prepend
+			input#filter_field.filter(type='text' style='margin: 10px 0 10px 0;' placeholder='Filter' value=filter)
+			a#do_filter_field.do-filter.btn(href='#' style='margin: 10px 0 10px 0;')
+				.icon-filter
 table.table.table-striped.table-condensed
 	thead
 		tr
