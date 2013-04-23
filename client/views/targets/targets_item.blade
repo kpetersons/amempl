@@ -1,0 +1,11 @@
+tr(class=target_selected)
+	td.span2
+		a.icon-edit(href='/targets/#{target._id}/edit')
+		!&nbsp;
+		a.details(href='#')=target_name
+	td=target_description
+	td.span2
+		.text-right=target_balance
+	td.span1
+		.pull-right
+			.icon-trash

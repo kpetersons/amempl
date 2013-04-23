@@ -1,0 +1,15 @@
+h4.muted Targets
+table.table.table-striped.table-condensed
+	thead
+		tr
+			th.span2 Name
+			th Description
+			th.span1
+				.text-right Balance
+			th.span1
+	tbody
+		foreach targets as target
+			include 'targets_item' exposing target
+.form-actions
+	.btn-group.pull-right
+		a.btn.btn-primary.new(href='/targets/new') New

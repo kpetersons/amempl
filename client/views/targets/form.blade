@@ -1,0 +1,31 @@
+.form-horizontal
+	.control-group(class=nameError)
+		label.control-label(for='target_name') Name
+		.controls
+			input#target_name(type='text', value=target_name)
+	.control-group(class=categoryError)
+		label.control-label(for='target_category') Category
+		.controls
+			input#target_category(type='text', value=target_category)
+			small
+				ul#target_categories.unstyled.inline(style='margin:2px 0 0 0')
+					foreach target_categories as category
+						li.label.label-info(style='margin:0 2px 0 0;')
+							=category.name
+							span.remove-category(style='padding-left:2px; cursor:pointer;' data-category=category.id) &times;
+	.control-group(class=amountError)
+		label.control-label(for='target_amount') Amount
+		.controls
+			input#target_amount.text-right(type='text', value=target_amount)
+	.control-group(class=fromError)
+		label.control-label(for='target_from') From
+		.controls
+			input#target_from.text-right(type='text', value=target_from)
+	.control-group(class=toError)
+		label.control-label(for='to_from') To
+		.controls
+			input#target_to.text-right(type='text', value=target_to)
+	.control-group
+		label.control-label(for='target_description') Description
+		.controls
+			textarea#target_description(rows='2')=target.description
