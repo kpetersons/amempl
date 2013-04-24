@@ -5,8 +5,17 @@ Template['targets/form'].rendered= ()->
 	_self = @
 	$('#target_category').typeahead(
 		source: (typeahead, query)->
-			Categories.find().map (item) ->
+			categories = Categories.find().map (item) ->
 				item.name
+			selectedCategories = Session.get('targetCategories')
+			categories = _.reject(categories, (item)-> 
+				found = _.find(selectedCategories, (sItem)->
+					return sItem.name == item
+				,@)
+				if found
+					return true
+			,@)
+			categories
 		updater: (item) ->
 			categories = Session.get('targetCategories')
 			categories ||= []
@@ -23,7 +32,12 @@ Template['targets/form'].rendered= ()->
 	
 Template['targets/form'].events
 	'click span.remove-category': (evt)->
-		console.log evt.target, @target.categories
+		categories = Session.get('targetCategories')
+		category_id = $(evt.target).attr('data-category')
+		categories = _.reject(categories, (item)->
+			item._id == category_id
+		, @)
+		Session.set('targetCategories', categories)
 	
 Template['targets/form'].helpers
   nameError: ->

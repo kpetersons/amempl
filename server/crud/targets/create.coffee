@@ -1,9 +1,12 @@
 Meteor.methods
 	'Targets.create': (target, success, failure)->
 		# TODO validations
-		target = Validator.uniqueness(Targets, target, 'name')
+		Validator.uniqueness Targets, target, 'name'
+		Validator.is_empty Targets, target, 'from'
+		Validator.is_empty Targets, target, 'to'
+		Validator.is_empty Targets, target, 'amount'
+		Validator.is_empty Targets, target, 'categories'
+		console.log 'target', target
 		if target.isValid
-      toSave = _.omit(target, ['messages'])
-      _.extend toSave, createdAt: new Date()
-			Targets.insert(toSave)
+      Targets.insert(_.omit(target, ['messages']))
 		target

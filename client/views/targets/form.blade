@@ -5,14 +5,14 @@
 			input#target_name(type='text', value=target_name)
 	.control-group(class=categoryError)
 		label.control-label(for='target_category') Category
-		.controls
+		.controls		
 			input#target_category(type='text', value=target_category)
 			small
 				ul#target_categories.unstyled.inline(style='margin:2px 0 0 0')
 					foreach target_categories as category
 						li.label.label-info(style='margin:0 2px 0 0;')
 							=category.name
-							span.remove-category(style='padding-left:2px; cursor:pointer;' data-category=category.id) &times;
+							span.remove-category(style='padding-left:2px; cursor:pointer;' data-category=category._id) &times;
 	.control-group(class=amountError)
 		label.control-label(for='target_amount') Amount
 		.controls

@@ -2,7 +2,7 @@ Template['targets/target'].target= ->
 	Session.get('detailsTarget')
   
 Template['targets/target'].transactions= ->
-	Transactions.find(target_id: Session.get('detailsTarget')._id)
+	Transactions.find({category_id: {$in: _.pluck(Session.get('detailsTarget').categories, '_id')}}).fetch()	
 
 Template['targets/target'].helpers  
 	transaction_account: ->

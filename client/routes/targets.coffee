@@ -23,6 +23,7 @@ Meteor.Router.add
 		editTarget = Targets.findOne(_id: _id)
 		if editTarget
 			Session.set('editTarget', editTarget)
+			Session.set('targetCategories', editTarget.categories)
 			'targets/edit'
 	'/targets/new': ->
 		Session.set('newTarget', {name: 'untitled', description: ''})
