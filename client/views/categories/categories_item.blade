@@ -1,6 +1,6 @@
 tr(class=category_selected)
 	td.span2
-		a.icon-edit(href='#')
+		a.icon-edit(href='/categories/#{category._id}/edit')
 		!&nbsp;
 		a.details(href='#')=category_name
 	td=category_description
@@ -9,4 +9,4 @@ tr(class=category_selected)
 		.text-right=category_balance
 	td.span1
 		.pull-right
-			a.icon-trash.delete(href='#')
+			a.icon-trash.delete(href='/categories/#{category._id}/delete')

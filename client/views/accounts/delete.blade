@@ -1,0 +1,19 @@
+include 'accounts'
+.modal.accounts.delete
+	.modal-header.alert.alert-error
+		h4 Delete
+	-if(account.messages)
+		ul.unstyled.alert.alert-error
+			foreach account.messages as field
+				li=field.message
+	.modal-body
+		strong
+			| Are you sure you want to delete account
+			| &nbsp;
+			=account.name
+			| &nbsp;
+			and all of its transactions?
+	.modal-footer
+		.btn-group.pull-right
+			button.delete.btn.btn-primary Delete
+			button.cancel.btn Cancel

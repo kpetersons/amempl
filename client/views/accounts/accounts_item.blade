@@ -13,4 +13,4 @@ tr(class=account_selected)
 		.text-right=account_balance
 	td.span1
 		.pull-right
-			.icon-trash
+			a.icon-trash(href='/accounts/#{account._id}/delete')

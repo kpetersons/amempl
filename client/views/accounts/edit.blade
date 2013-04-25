@@ -1,7 +1,7 @@
 include 'accounts'
 .modal.accounts.edit
-	.modal-header
-		h4 New
+	.modal-header.alert.alert-info
+		h4 Edit
 	-if(account.messages)
 		ul.unstyled.alert.alert-error
 			foreach account.messages as field
@@ -12,4 +12,3 @@ include 'accounts'
 		.btn-group.pull-right
 			button.save.btn.btn-primary Save
 			button.cancel.btn Cancel
-	
