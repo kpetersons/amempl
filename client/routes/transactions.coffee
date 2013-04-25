@@ -1,4 +1,9 @@
 Meteor.Router.add
+	'/transactions/:id/delete': (_id)->
+		deleteTransaction = Targets.findOne(_id: _id)
+		if deleteTransaction
+			Session.set('deleteTransaction', deleteTransaction)
+			'transactions/delete'          
 	'/transactions/:id/edit': (_id)->
 		editTransaction = Transactions.findOne(_id: _id)
 		if editTransaction

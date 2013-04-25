@@ -14,6 +14,11 @@ Meteor.Router.add
 			Session.set('editTransaction', editTransaction)
 			Session.set('url_return', "/categories/#{category_id}/details")      			
 		'transactions/edit'
+	'/categories/:id/delete': (_id)->
+		deleteCategory = Categories.findOne(_id: _id)
+		if deleteCategory
+			Session.set('deleteCategory', deleteCategory)
+			'categories/delete'        
 	'/categories/:id/details': (_id)->
 		detailsCategory = Categories.findOne(_id: _id)
 		if detailsCategory
