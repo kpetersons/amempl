@@ -1,3 +1,3 @@
-Meteor.subscribe("targets")
-Template['targets/targets'].targets= ->	
-	Targets.find()
+Meteor.subscribe("plans")
+Template['plans/plans'].plans= ->	
+	Plans.find()

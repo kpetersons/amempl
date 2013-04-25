@@ -1,10 +1,10 @@
-Template['targets/target'].target= ->
-	Session.get('detailsTarget')
+Template['plans/plan'].plan= ->
+	Session.get('detailsPlan')
   
-Template['targets/target'].transactions= ->
-	Transactions.find({category_id: {$in: _.pluck(Session.get('detailsTarget').categories, '_id')}}).fetch()	
+Template['plans/plan'].transactions= ->
+	Transactions.find({category_id: {$in: _.pluck(Session.get('detailsPlan').categories, '_id')}}).fetch()	
 
-Template['targets/target'].helpers  
+Template['plans/plan'].helpers  
 	transaction_account: ->
 		_.extend({}, Accounts.findOne(_id: @transaction.account_id)).name
 	
@@ -18,4 +18,4 @@ Template['targets/target'].helpers
 		accounting.formatMoney(@transaction.amount, '', 2)
 		
 	url_prefix: ->
-		"/targets/#{Session.get('detailsTarget')._id}"		
+		"/plans/#{Session.get('detailsPlan')._id}"		

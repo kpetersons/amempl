@@ -1,24 +1,24 @@
-Template['targets/edit'].target= ->
-	Session.get('editTarget')
+Template['plans/edit'].plan= ->
+	Session.get('editPlan')
 
-Template['targets/edit'].rendered= ()->
+Template['plans/edit'].rendered= ()->
 	$(@lastNode).modal
 		backdrop: 'static'
 		keyboard: false	
     
-Template['targets/edit'].events=
+Template['plans/edit'].events=
 	'click button.save': (event)->    			
-    target = Session.get('editTarget')
-    Meteor.call 'Targets.update', {_id: target._id, name: $('#target_name').val(), description: $('#target_description').val()}, (error, target)->
-      if target.isValid
-        $('.modal.targets.edit').modal 'hide'
-        Meteor.Router.to('/targets');
-      Session.set('editTarget', target)
+    plan = Session.get('editPlan')
+    Meteor.call 'Plans.update', {_id: plan._id, name: $('#plan_name').val(), description: $('#plan_description').val(), from: $('#plan_from').val(), to: $('#plan_to').val()}, (error, plan)->
+      if plan.isValid
+        $('.modal.plans.edit').modal 'hide'
+        Meteor.Router.to('/plans');
+      Session.set('editPlan', plan)
 	'click button.cancel': (event)->    	
-		$('.modal.targets.edit').modal 'hide'
-		Meteor.Router.to('/targets');
+		$('.modal.plans.edit').modal 'hide'
+		Meteor.Router.to('/plans');
     
-Template['targets/edit'].helpers
+Template['plans/edit'].helpers
 	messages: ->
-  	Session.get('editTarget').messages
+  	Session.get('editPlan').messages
         

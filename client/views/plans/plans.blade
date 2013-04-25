@@ -1,4 +1,4 @@
-h4.muted Targets
+h4.muted Plans
 table.table.table-striped.table-condensed
 	thead
 		tr
@@ -8,8 +8,8 @@ table.table.table-striped.table-condensed
 				.text-right Balance
 			th.span1
 	tbody
-		foreach targets as target
-			include 'targets_item' exposing target
+		foreach plans as plan
+			include 'plans_item' exposing plan
 .form-actions
 	.btn-group.pull-right
-		a.btn.btn-primary.new(href='/targets/new') New
+		a.btn.btn-primary.new(href='/plans/new') New

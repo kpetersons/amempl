@@ -1,20 +1,18 @@
-Template['targets/targets_item'].helpers
-	target_name: ->
-  	@target.name
+Template['plans/plans_item'].helpers
+	plan_name: ->
+  	@plan.name
     
-	target_description: ->
-  	@target.description
+	plan_description: ->
+  	@plan.description
     
-	target_balance: ->
-  	accounting.formatMoney(@target.balance, '', 2)
+	plan_balance: ->
+  	accounting.formatMoney(@plan.balance, '', 2)
     
-	target_selected: ->
-		if @target.selected == true
+	plan_selected: ->
+		if @plan.selected == true
 			'success'
       
-Template['targets/targets_item'].events
-	'click a.default': (evt) ->
-		Meteor.call 'Targets.update_default', @target, (error, target)-> return					
+Template['plans/plans_item'].events
 	'click a.details': (evt) ->
-		Meteor.call 'Targets.update_selected', @target, (error, target)->
-			Meteor.Router.to("/targets/#{target._id}/details");
+		Meteor.call 'Plans.update_selected', @plan, (error, plan)->
+			Meteor.Router.to("/plans/#{plan._id}/details");

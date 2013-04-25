@@ -1,13 +1,13 @@
-include 'targets'
-.modal.targets.new
+include 'plans'
+.modal.plans.new
 	.modal-header
 		h4 New
-	-if(target.messages)
+	-if(plan.messages)
 		ul.unstyled.alert.alert-error
-			foreach target.messages as field
+			foreach plan.messages as field
 				li=field.message
 	.modal-body
-		include 'form' exposing target
+		include 'form' exposing plan
 	.modal-footer
 		.btn-group.pull-right
 			button.save.btn.btn-primary Save

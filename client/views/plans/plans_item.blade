@@ -1,11 +1,11 @@
-tr(class=target_selected)
+tr(class=plan_selected)
 	td.span2
-		a.icon-edit(href='/targets/#{target._id}/edit')
+		a.icon-edit(href='/plans/#{plan._id}/edit')
 		!&nbsp;
-		a.details(href='#')=target_name
-	td=target_description
+		a.details(href='#')=plan_name
+	td=plan_description
 	td.span2
-		.text-right=target_balance
+		.text-right=plan_balance
 	td.span1
 		.pull-right
-			.icon-trash
+			a.icon-trash(href='/plans/#{plan._id}/delete')

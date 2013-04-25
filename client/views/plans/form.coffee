@@ -1,13 +1,13 @@
-Template['targets/form'].destroyed= ()->
-	Session.set('targetCategories', null)
+Template['plans/form'].destroyed= ()->
+	Session.set('planCategories', null)
 
-Template['targets/form'].rendered= ()->
+Template['plans/form'].rendered= ()->
 	_self = @
-	$('#target_category').typeahead(
+	$('#plan_category').typeahead(
 		source: (typeahead, query)->
 			categories = Categories.find().map (item) ->
 				item.name
-			selectedCategories = Session.get('targetCategories')
+			selectedCategories = Session.get('planCategories')
 			categories = _.reject(categories, (item)-> 
 				found = _.find(selectedCategories, (sItem)->
 					return sItem.name == item
@@ -17,81 +17,71 @@ Template['targets/form'].rendered= ()->
 			,@)
 			categories
 		updater: (item) ->
-			categories = Session.get('targetCategories')
+			categories = Session.get('planCategories')
 			categories ||= []
 			categories.push(Categories.findOne(name: item))
-			Session.set('targetCategories', categories)
+			Session.set('planCategories', categories)
 			return
 	)
-	$('#target_from').datepicker().on('changeDate', (evt)->
-		$('#target_from').datepicker('hide')
+	$('#plan_from').datepicker().on('changeDate', (evt)->
+		$('#plan_from').datepicker('hide')
 	)
-	$('#target_to').datepicker().on('changeDate', (evt)->
-		$('#target_to').datepicker('hide')
+	$('#plan_to').datepicker().on('changeDate', (evt)->
+		$('#plan_to').datepicker('hide')
 	)	
 	
-Template['targets/form'].events
+Template['plans/form'].events
 	'click span.remove-category': (evt)->
-		categories = Session.get('targetCategories')
+		categories = Session.get('planCategories')
 		category_id = $(evt.target).attr('data-category')
 		categories = _.reject(categories, (item)->
 			item._id == category_id
 		, @)
-		Session.set('targetCategories', categories)
+		Session.set('planCategories', categories)
 	
-Template['targets/form'].helpers
+Template['plans/form'].helpers
   nameError: ->
-    field = _.find(@target.messages, (field) ->
+    field = _.find(@plan.messages, (field) ->
       field.name == 'name'
     )
     if field
       return 'error'		
 
   categoryError: ->
-    field = _.find(@target.messages, (field) ->
+    field = _.find(@plan.messages, (field) ->
       field.name == 'category_id'
     )
     if field
       return 'error'
-		
-  amountError: ->
-    field = _.find(@target.messages, (field) ->
-      field.name == 'amount'
-    )
-    if field
-      return 'error'		
-		
+				
   fromError: ->
-    field = _.find(@target.messages, (field) ->
+    field = _.find(@plan.messages, (field) ->
       field.name == 'from'
     )
     if field
       return 'error'		
 		
   toError: ->
-    field = _.find(@target.messages, (field) ->
+    field = _.find(@plan.messages, (field) ->
       field.name == 'to'
     )
     if field
       return 'error'		
 		
 		
-Template['targets/form'].helpers
+Template['plans/form'].helpers
 
-	target_name: ->
-		@target.name
+	plan_name: ->
+		@plan.name
 
-	target_categories: ->
-		Session.get('targetCategories')
+	plan_categories: ->
+		Session.get('planCategories')
 	
-	target_category: ->
-		_.extend({}, Targets.findOne(_id: @target.category_id)).name		
+	plan_category: ->
+		_.extend({}, Plans.findOne(_id: @plan.category_id)).name		
 
-	target_from: ->
-		@target.from
+	plan_from: ->
+		@plan.from
 	
-	target_to: ->
-		@target.to
-		
-	target_amount: ->
-		accounting.formatMoney(@target.amount, '', 2)
+	plan_to: ->
+		@plan.to

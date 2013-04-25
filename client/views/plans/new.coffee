@@ -1,23 +1,23 @@
-Template['targets/new'].target= ->
-	Session.get('newTarget')
+Template['plans/new'].plan= ->
+	Session.get('newPlan')
 
-Template['targets/new'].rendered= ()->
+Template['plans/new'].rendered= ()->
 	$(@lastNode).modal
 		backdrop: 'static'
 		keyboard: false	
     
-Template['targets/new'].events=
+Template['plans/new'].events=
 	'click button.save': (event)->    			
-    Meteor.call 'Targets.create', {name: $('#target_name').val(), description: $('#target_description').val(), categories: Session.get('targetCategories'), amount: $('#target_amount').val(), from: $('#target_from').val(), to: $('#target_to').val()}, (error, target)->						
+    Meteor.call 'Plans.create', {name: $('#plan_name').val(), description: $('#plan_description').val(), categories: Session.get('planCategories'), from: $('#plan_from').val(), to: $('#plan_to').val()}, (error, plan)->						
       if target.isValid
-        $('.modal.targets.new').modal 'hide'
-        Meteor.Router.to('/targets');
-      Session.set('newTarget', target)
+        $('.modal.plans.new').modal 'hide'
+        Meteor.Router.to('/plans');
+      Session.set('newPlan', plan)
 	'click button.cancel': (event)->    	
-		$('.modal.targets.new').modal 'hide'
-		Meteor.Router.to('/targets');
+		$('.modal.plans.new').modal 'hide'
+		Meteor.Router.to('/plans');
     
-Template['targets/new'].helpers
+Template['plans/new'].helpers
 	messages: ->
-  	Session.get('newTarget').messages
+  	Session.get('newPlan').messages
         
