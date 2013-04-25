@@ -3,3 +3,4 @@
 @Transactions = new Meteor.Collection 'transactions'
 @Targets = new Meteor.Collection 'targets'
 @Plans = new Meteor.Collection 'plans'
+@PlanCategories = new Meteor.Collection 'plan_categories'
