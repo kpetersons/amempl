@@ -49,7 +49,7 @@ Template['plans/form'].helpers
 
   categoryError: ->
     field = _.find(@plan.messages, (field) ->
-      field.name == 'category_id'
+      field.name == 'categories'
     )
     if field
       return 'error'

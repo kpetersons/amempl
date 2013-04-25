@@ -49,7 +49,7 @@ Template['targets/form'].helpers
 
   categoryError: ->
     field = _.find(@target.messages, (field) ->
-      field.name == 'category_id'
+      field.name == 'categories'
     )
     if field
       return 'error'

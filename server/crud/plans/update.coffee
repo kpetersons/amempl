@@ -4,6 +4,7 @@ Meteor.methods
 		Validator.uniqueness Plans, plan, 'name'
 		Validator.is_empty Plans, plan, 'from'
 		Validator.is_empty Plans, plan, 'to'
+		Validator.is_empty Plans, plan, 'categories' 
 		if plan.isValid
 			Plans.update(plan._id, $set: _.omit(plan, ['messages', '_id']))
 		plan
