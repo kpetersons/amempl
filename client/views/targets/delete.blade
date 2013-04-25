@@ -1,0 +1,19 @@
+include 'targets'
+.modal.targets.delete
+	.modal-header.alert.alert-error
+		h4 Delete
+	-if(target.messages)
+		ul.unstyled.alert.alert-error
+			foreach target.messages as field
+				li=field.message
+	.modal-body
+		strong
+			| Are you sure you want to delete target
+			| &nbsp;
+			=target.name
+			| &nbsp;
+			and all of its transactions?
+	.modal-footer
+		.btn-group.pull-right
+			button.delete.btn.btn-primary Delete
+			button.cancel.btn Cancel
