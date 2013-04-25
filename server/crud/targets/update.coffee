@@ -1,6 +1,10 @@
 Meteor.methods
 	'Targets.update': (target, success, failure)->
-		target = Validator.uniqueness(Targets, target, 'name')
+		Validator.uniqueness Targets, target, 'name'
+		Validator.is_empty Targets, target, 'from'
+		Validator.is_empty Targets, target, 'to'
+		Validator.is_empty Targets, target, 'amount'
+		Validator.is_empty Targets, target, 'categories'
 		if target.isValid
 			Targets.update(target._id, $set: _.omit(target, ['messages', '_id']))
 		target

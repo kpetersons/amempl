@@ -1,18 +1,17 @@
-include 'targets'
-.modal.targets.delete
+include 'plans'
+.modal.plans.delete
 	.modal-header.alert.alert-error
 		h4 Delete
-	-if(target.messages)
+	-if(plan.messages)
 		ul.unstyled.alert.alert-error
-			foreach target.messages as field
+			foreach plan.messages as field
 				li=field.message
 	.modal-body
 		strong
-			| Are you sure you want to delete target
+			| Are you sure you want to delete plan
 			| &nbsp;
-			=target.name
-			| &nbsp;
-			and all of its transactions?
+			=plan.name
+			| ?
 	.modal-footer
 		.btn-group.pull-right
 			button.delete.btn.btn-primary Delete

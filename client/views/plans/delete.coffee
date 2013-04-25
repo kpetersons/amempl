@@ -1,23 +1,23 @@
-Template['targets/delete'].target= ->
-	Session.get('deleteTarget')
+Template['plans/delete'].plan= ->
+	Session.get('deletePlan')
 
-Template['targets/delete'].rendered= ()->
+Template['plans/delete'].rendered= ()->
 	$(@lastNode).modal
 		backdrop: 'static'
 		keyboard: false	
     
-Template['targets/delete'].events=
+Template['plans/delete'].events=
 	'click button.delete': (event)->    			
-    target = Session.get('deleteTarget')
-    Meteor.call 'Targets.delete', {_id: target._id}, (error, target)->
-      $('.modal.targets.delete').modal 'hide'
-      Meteor.Router.to('/targets')
-      Session.set('deleteTarget', target)
+    plan = Session.get('deletePlan')
+    Meteor.call 'Plans.delete', {_id: plan._id}, (error, plan)->
+      $('.modal.plans.delete').modal 'hide'
+      Meteor.Router.to('/plans')
+      Session.set('deletePlan', plan)
 	'click button.cancel': (event)->    	
-		$('.modal.targets.delete').modal 'hide'
-		Meteor.Router.to('/targets');
+		$('.modal.plans.delete').modal 'hide'
+		Meteor.Router.to('/plans');
     
-Template['targets/delete'].helpers
+Template['plans/delete'].helpers
 	messages: ->
-  	Session.get('deleteTarget').messages
+  	Session.get('deletePlan').messages
         
