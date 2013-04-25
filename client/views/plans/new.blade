@@ -1,0 +1,15 @@
+include 'targets'
+.modal.targets.new
+	.modal-header
+		h4 New
+	-if(target.messages)
+		ul.unstyled.alert.alert-error
+			foreach target.messages as field
+				li=field.message
+	.modal-body
+		include 'form' exposing target
+	.modal-footer
+		.btn-group.pull-right
+			button.save.btn.btn-primary Save
+			button.cancel.btn Cancel
+	
