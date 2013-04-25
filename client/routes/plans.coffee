@@ -22,11 +22,13 @@ Meteor.Router.add
 		detailsPlan = Plans.findOne(_id: _id)
 		if detailsPlan
 			Session.set('detailsPlan', detailsPlan)
+			Session.set('planCategories', detailsPlan.categories)
 			'plans/plan'
 	'/plans/:id/edit': (_id)->
 		editPlan = Plans.findOne(_id: _id)
 		if editPlan
 			Session.set('editPlan', editPlan)
+			Session.set('planCategories', editPlan.categories)      
 			'plans/edit'
 	'/plans/new': ->
 		Session.set('newPlan', {name: 'untitled', description: ''})
