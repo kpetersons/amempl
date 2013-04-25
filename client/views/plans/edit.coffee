@@ -9,7 +9,7 @@ Template['plans/edit'].rendered= ()->
 Template['plans/edit'].events=
 	'click button.save': (event)->    			
     plan = Session.get('editPlan')
-    Meteor.call 'Plans.update', {_id: plan._id, name: $('#plan_name').val(), description: $('#plan_description').val(), from: $('#plan_from').val(), to: $('#plan_to').val()}, (error, plan)->
+    Meteor.call 'Plans.update', {_id: plan._id, name: $('#plan_name').val(), description: $('#plan_description').val(), categories: Session.get('planCategories'), from: $('#plan_from').val(), to: $('#plan_to').val()}, (error, plan)->
       if plan.isValid
         $('.modal.plans.edit').modal 'hide'
         Meteor.Router.to('/plans');
