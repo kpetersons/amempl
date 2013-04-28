@@ -1,5 +1,6 @@
 Meteor.methods
 	'Accounts.update': (account, success, failure)->
+		account.isValid = true
 		account = Validator.uniqueness(Accounts, account, 'name')
 		if account.isValid
 			Accounts.update(account._id, $set: _.omit(account, ['messages', '_id']))

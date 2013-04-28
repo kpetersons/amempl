@@ -6,8 +6,8 @@ h5.muted
 	=plan.name
 	!&nbsp;
 	!details
-include 'plan_categories' exposing transactions url_prefix
+include 'plan_categories' exposing plan_categories
 .form-actions
 	.btn-group.pull-right
-		a.btn.btn-primary.new(href='/plans/#{plan._id}/categories/new') Add category
-		a.btn.cancel(href='#') Cancel
+		a.btn.new(href='/plans/#{plan._id}/categories/new') Add category
+		button.btn.btn-primary.save Save

@@ -1,21 +1,20 @@
 Meteor.methods
-	'PlansCategories.update': (plan, success, failure)->
+	'PlanCategories.update': (planCategory, success, failure)->
 		# TODO validations
-		Validator.uniqueness Plans, plan, 'name'
-		Validator.is_empty Plans, plan, 'from'
-		Validator.is_empty Plans, plan, 'to'
-		Validator.is_empty Plans, plan, 'categories' 
-		if plan.isValid
-			Plans.update(plan._id, $set: _.omit(plan, ['messages', '_id']))
-		plan
+		planCategory.isValid = true
+		Validator.is_empty PlanCategories, planCategory, 'planned'
+		console.log 'planCategory', planCategory
+		if planCategory.isValid			
+			PlanCategories.update(planCategory._id, $set: _.omit(planCategory, ['messages', '_id']))
+		planCategory
 		
-	'PlansCategories.update_selected': (plan)->
-		Plans.update({}, {$set: {selected: false}}, {multi: true})
-		Plans.update plan._id, 
+	'PlanCategories.update_selected': (planCategory)->
+		PlanCategories.update({}, {$set: {selected: false}}, {multi: true})
+		PlanCategories.update planCategory._id, 
 			$set:
 				selected: true
-		plan
+		planCategory
 		
-	'PlansCategories.update_unselected': (plan)->
-		Plans.update({}, {$set: {selected: false}}, {multi: true})
-		plan
+	'PlanCategories.update_unselected': (planCategory)->
+		PlanCategories.update({}, {$set: {selected: false}}, {multi: true})
+		planCategory

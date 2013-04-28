@@ -1,9 +1,10 @@
 Meteor.methods
 	'Transactions.update': (transaction, success, failure)->
+		transaction.isValid = true
 		transaction.account_id = _.extend({}, Accounts.findOne(name: transaction.transaction_account))._id
 		transaction.category_id = _.extend({},Categories.findOne(name: transaction.transaction_category))._id
 		transaction.amount = transaction.transaction_amount
-		transaction.when = transaction.transaction_when
+		transaction.when = moment(transaction.transaction_when, 'DD/MM/YYYY').toDate()
 		transaction.isValid = true
 		Validator.reference_exists Accounts, transaction, 'transaction_account', 'name'
 		Validator.reference_exists Categories, transaction, 'transaction_category', 'name'

@@ -7,7 +7,13 @@ Template['plans/plans_item'].helpers
     
 	plan_balance: ->
   	accounting.formatMoney(@plan.balance, '', 2)
-    
+
+	plan_from: ->
+		moment(@plan.from).format('DD/MMM/YYYY')
+		
+	plan_to: ->
+		moment(@plan.to).format('DD/MMM/YYYY')
+		
 	plan_selected: ->
 		if @plan.selected == true
 			'success'

@@ -1,5 +1,6 @@
 Meteor.methods
 	'Targets.update': (target, success, failure)->
+		target.isValid = true
 		Validator.uniqueness Targets, target, 'name'
 		Validator.is_empty Targets, target, 'from'
 		Validator.is_empty Targets, target, 'to'

@@ -13,3 +13,7 @@
   padding-top: 15px;
   padding-bottom: 14px;
 }
+
+td input[type=text] {
+	margin-bottom:0px;
+}

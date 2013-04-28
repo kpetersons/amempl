@@ -6,7 +6,7 @@ Template['transactions/transactions_item'].helpers
 		_.extend({}, Categories.findOne(_id: @transaction.category_id)).name		
 
 	transaction_when: ->
-		@transaction.when
+		moment(@transaction.when).format('DD/MMM/YYYY')
 		
 	transaction_amount: ->
 		accounting.formatMoney(@transaction.amount, '', 2)

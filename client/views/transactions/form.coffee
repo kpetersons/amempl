@@ -9,7 +9,7 @@ Template['transactions/form'].rendered= ()->
 			Categories.find().map (item) ->
 				item.name
 	)
-	$('#transaction_when').datepicker().on('changeDate', (evt)->
+	$('#transaction_when').datepicker(format:'dd/mm/yyyy').on('changeDate', (evt)->
 		$('#transaction_when').datepicker('hide')
 	)
 	
@@ -52,7 +52,7 @@ Template['transactions/form'].helpers
 		_.extend({}, Categories.findOne(_id: @transaction.category_id)).name		
 
 	transaction_when: ->
-		@transaction.when
+		moment(@transaction.when).format('DD/MM/YYYY')
 		
 	transaction_amount: ->
 		accounting.formatMoney(@transaction.amount, '', 2)

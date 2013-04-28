@@ -1,6 +1,7 @@
 Meteor.methods
 	'Targets.create': (target, success, failure)->
 		# TODO validations
+		target.isValid = true
 		Validator.uniqueness Targets, target, 'name'
 		Validator.is_empty Targets, target, 'from'
 		Validator.is_empty Targets, target, 'to'
