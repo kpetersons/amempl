@@ -2,7 +2,8 @@ Template['categories/category'].category= ->
 	Session.get('detailsCategory')
   
 Template['categories/category'].transactions= ->
-	Transactions.find(category_id: Session.get('detailsCategory')._id)
+	category = Session.get('detailsCategory')
+	Transactions.forCategory category, Transactions.full_transform
 
 Template['categories/category'].helpers
 	url_prefix: ->

@@ -1,9 +1,9 @@
 Template['transactions/transactions_item'].helpers
 	transaction_account: ->
-		_.extend({}, Accounts.findOne(_id: @transaction.account_id)).name
+		@transaction.account_name
 	
 	transaction_category: ->
-		_.extend({}, Categories.findOne(_id: @transaction.category_id)).name		
+		@transaction.category_name
 
 	transaction_when: ->
 		moment(@transaction.when).format('DD/MMM/YYYY')

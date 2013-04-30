@@ -3,9 +3,9 @@ Template['transactions/transactions'].transactions= ->
 	filter = Session.get('transactionFilter')
 	unless _.isEmpty filter
 		filter = new RegExp(filter, 'i')
-		console.log 'query', {$or: [{transaction_account: filter}, {transaction_category: filter}, {when: filter}, {amount: filter}]}, 'count', Transactions.find({$or: [{transaction_account: filter}, {transaction_category: filter}, {when: filter}, {amount: filter}]}).fetch()
-		return Transactions.find({$or: [{transaction_account: filter}, {transaction_category: filter}, {when: filter}, {amount: filter}]})
-	Transactions.find()
+		Transactions.findQuery({$or: [{transaction_account: filter}, {transaction_category: filter}, {when: filter}, {amount: filter}]}, Transactions.full_transform)
+	else
+		Transactions.findQuery({}, Transactions.full_transform)
 
 Template['transactions/transactions'].helpers
 	url_prefix: ->
