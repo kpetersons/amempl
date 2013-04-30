@@ -6,7 +6,7 @@ Template['accounts/accounts_item'].helpers
   	@account.description
     
 	account_balance: ->
-  	accounting.formatMoney(@account.getBalance(), '', 2)
+  	accounting.formatMoney(@account.balance, '', 2)
     
 	account_default: ->
 		@account.default == true
@@ -16,7 +16,7 @@ Template['accounts/accounts_item'].helpers
 			'success'
 			
 	account_balance_class: ->
-		if @account.isBalancePositive()
+		if @account.is_balance_positive
 			'text-success'
 		else
 			'text-error'

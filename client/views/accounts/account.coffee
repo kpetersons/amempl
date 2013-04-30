@@ -2,7 +2,8 @@ Template['accounts/account'].account= ->
 	Session.get('detailsAccount')
   
 Template['accounts/account'].transactions= ->
-	Transactions.find(account_id: Session.get('detailsAccount')._id)
+	account = Session.get('detailsAccount')
+	Transactions.forAccount account 
 
 Template['accounts/account'].helpers  
 	transaction_account: ->

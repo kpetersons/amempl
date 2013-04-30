@@ -10,12 +10,12 @@ Template['transactions/transactions_item'].helpers
 		
 	transaction_amount: ->
 		amount = @transaction.amount
-		if @transaction.getType() == 'expense'
+		if @transaction.type == 'expense'
 			amount = -1 * amount
 		accounting.formatMoney(amount, '', 2)
 		
 	transaction_type_class: ->
-		if @transaction.getType() == 'income'
+		if @transaction.type == 'income'
 			'text-success'
 		else
 			'text-error'
