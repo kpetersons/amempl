@@ -1,3 +1,3 @@
 Meteor.subscribe("accounts")
 Template['accounts/accounts'].accounts= ->	
-	Accounts.find()
+	Accounts.forUser(1, Accounts.full_transform)
