@@ -6,7 +6,7 @@ Template['accounts/accounts_item'].helpers
   	@account.description
     
 	account_balance: ->
-  	accounting.formatMoney(@account.balance, '', 2)
+  	accounting.formatMoney(@account.getBalance(), '', 2)
     
 	account_default: ->
 		@account.default == true
@@ -14,7 +14,13 @@ Template['accounts/accounts_item'].helpers
 	account_selected: ->
 		if @account.selected == true
 			'success'
-      
+			
+	account_balance_class: ->
+		if @account.isBalancePositive()
+			'text-success'
+		else
+			'text-error'
+
 Template['accounts/accounts_item'].events
 	'click a.default': (evt) ->
 		Meteor.call 'Accounts.update_default', @account, (error, account)-> return					

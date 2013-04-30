@@ -1,2 +1,2 @@
 Meteor.publish 'accounts', ->	
-  accounts = Accounts.find()
+  accounts = Accounts.find()	

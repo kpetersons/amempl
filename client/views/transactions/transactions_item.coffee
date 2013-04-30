@@ -9,8 +9,16 @@ Template['transactions/transactions_item'].helpers
 		moment(@transaction.when).format('DD/MMM/YYYY')
 		
 	transaction_amount: ->
-		accounting.formatMoney(@transaction.amount, '', 2)
-    
+		amount = @transaction.amount
+		if @transaction.getType() == 'expense'
+			amount = -1 * amount
+		accounting.formatMoney(amount, '', 2)
+		
+	transaction_type_class: ->
+		if @transaction.getType() == 'income'
+			'text-success'
+		else
+			'text-error'
 Template['transactions/transactions_item'].events
 	'click a.accounts.details': (evt) ->
 		Meteor.call 'Accounts.update_selected', Accounts.findOne(_id: @transaction.account_id), (error, account)->
