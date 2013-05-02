@@ -1,0 +1,27 @@
+.form-horizontal
+	.control-group(class=nameError)
+		label.control-label(for='plan_name') Name
+		.controls
+			input#plan_name(type='text', value=plan_name)
+	.control-group(class=categoryError)
+		label.control-label(for='plan_category') Category
+		.controls		
+			input#plan_category(type='text', value=plan_category)
+			small
+				ul#plan_categories.unstyled.inline(style='margin:2px 0 0 0')
+					foreach plan_categories as category
+						li.label.label-info(style='margin:0 2px 0 0;')
+							=category.name
+							span.remove-category(style='padding-left:2px; cursor:pointer;' data-category=category._id) &times;
+	.control-group(class=fromError)
+		label.control-label(for='plan_from') From
+		.controls
+			input#plan_from.text-right(type='text', value=plan_from)
+	.control-group(class=toError)
+		label.control-label(for='plan_to') To
+		.controls
+			input#plan_to.text-right(type='text', value=plan_to)
+	.control-group
+		label.control-label(for='plan_description') Description
+		.controls
+			textarea#plan_description(rows='2')=plan.description

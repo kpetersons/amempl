@@ -1,4 +1,5 @@
 @Targets = new Meteor.Collection 'targets'
+@TargetCategories = new Meteor.Collection 'target_categories'
 
 @Targets.full_transform= (doc)->
 	transactions = Transactions.forCategories({_ids: _.pluck(doc.categories, '_id')}, Transactions.full_transform).fetch()

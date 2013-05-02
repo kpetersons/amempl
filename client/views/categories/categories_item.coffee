@@ -20,7 +20,13 @@ Template['categories/categories_item'].helpers
 	category_selected: ->
 		if @category.selected == true
 			'success'		
-		
+
+	target_category_amount: ->
+		cat = _.find(Session.get('detailsTarget').categories, (item) ->
+			item._id = @category._id
+		, @)
+		if cat
+			accounting.formatMoney(cat.amount, '', 2)
 Template['categories/categories_item'].events
 	'click .delete': ->
   	console.log 'delete category', @category    

@@ -1,0 +1,13 @@
+include 'plans'
+hr
+h5.muted
+	!Plan
+	!&nbsp;
+	=plan.name
+	!&nbsp;
+	!details
+include 'plan_categories' exposing plan_categories
+.form-actions
+	.btn-group.pull-right
+		a.btn.new(href='/plans/#{plan._id}/categories/new') Add category
+		button.btn.btn-primary.save Save

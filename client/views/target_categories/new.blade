@@ -1,0 +1,15 @@
+include 'plans'
+.modal.plans.new
+	.modal-header
+		h4 New
+	-if(plan.messages)
+		ul.unstyled.alert.alert-error
+			foreach plan.messages as field
+				li=field.message
+	.modal-body
+		include 'form' exposing plan
+	.modal-footer
+		.btn-group.pull-right
+			button.save.btn.btn-primary Save
+			button.cancel.btn Cancel
+	

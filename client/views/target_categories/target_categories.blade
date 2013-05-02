@@ -1,0 +1,19 @@
+h4.muted Plans
+table.table.table-striped.table-condensed
+	thead
+		tr
+			th.span2 Name
+			th Description
+			th.span1
+				.text-right From
+			th.span2
+				.text-right To
+			th.span2
+				.text-right Balance
+			th.span1
+	tbody
+		foreach plans as plan
+			include 'plans_item' exposing plan
+.form-actions
+	.btn-group.pull-right
+		a.btn.btn-primary.new(href='/plans/new') New

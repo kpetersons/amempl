@@ -9,7 +9,7 @@ Template['targets/target'].transactions= ->
 		Transactions.forCategoriesWithinRange({_ids: _.pluck(Session.get('detailsTarget').categories, '_id')}, {from: Session.get('detailsTarget').from, to: Session.get('detailsTarget').to}, Transactions.full_transform).fetch()	
 
 Template['targets/target'].categories= ->
-	Categories.forTarget(Session.get('detailsTarget'), Categories.full_transform_range).fetch()
+	Categories.forTarget(Session.get('detailsTarget'), Categories.full_transform_range_target).fetch()
 
 Template['targets/target'].helpers  
 	url_prefix: ->
@@ -18,3 +18,10 @@ Template['targets/target'].helpers
 Template['targets/target'].events		
 	'click a.clear': (evt) ->
 		Meteor.call 'Categories.update_unselected', {}
+		
+	'click a.save': (evt)->
+		targetCategories = $('td input')
+		detailsTarget = Session.get('detailsTarget')
+		_.each targetCategories, (targetCategory) ->
+			detailsTarget
+		, @	

@@ -9,7 +9,7 @@ Template['targets/edit'].rendered= ()->
 Template['targets/edit'].events=
 	'click button.save': (event)->    			
     target = Session.get('editTarget')
-    Meteor.call 'Targets.update', {_id: target._id, name: $('#target_name').val(), description: $('#target_description').val(), categories: Session.get('targetCategories'), amount: $('#target_amount').val(), from: $('#target_from').val(), to: $('#target_to').val()}, (error, target)->
+    Meteor.call 'Targets.update', {_id: target._id, name: $('#target_name').val(), description: $('#target_description').val(), categories: Session.get('targetCategories'), from: $('#target_from').val(), to: $('#target_to').val()}, (error, target)->
       if target.isValid
         $('.modal.targets.edit').modal 'hide'
         Meteor.Router.to('/targets');

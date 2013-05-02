@@ -5,6 +5,9 @@ tr(class='#{category_selected} #{category_balance_class}')
 		a.details(href='#' data-href='#{url_prefix}/categories/#{category._id}/details')=category_name
 	td.span2=category_type		
 	td=category_description
+	-if (category.for_target == true)
+		td.span2
+			input.pull-right.input-small.text-right(type='text' value=target_category_amount data-target-category=category._id)
 	td.span2
 		.text-right=category_balance
 	td.span1

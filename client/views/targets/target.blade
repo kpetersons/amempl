@@ -12,7 +12,8 @@ include '../categories/nested_categories' exposing categories url_prefix
 	.btn-group.pull-left
 		a.btn.clear(href='#') Clear selection
 	.btn-group.pull-right
-		a.btn.btn-primary.new(href='/targets/#{target._id}/categories/new') Add category
+		a.btn.new(href='/targets/#{target._id}/categories/new') Add category
+		a.btn.btn-primary.save(href='#') Save
 h6.muted Transactions
 include '../transactions/nested_transactions' exposing transactions url_prefix
 .form-actions
