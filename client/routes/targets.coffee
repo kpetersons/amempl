@@ -1,16 +1,19 @@
 Meteor.Router.add
 	'/targets/:target_id/transactions/new': (target_id)->
-		target = Targets.findOne _id: target_id
-		if target
+		detailsTarget = Targets.findOne _id: target_id
+		if detailsTarget
 			Session.set('newTransaction', target_id: target._id)
+			Session.set('detailsTarget', detailsTarget)		
 			Session.set('url_return', "/targets/#{target._id}/details")
 			'transactions/new'
 	'/targets/:target_id/transactions/:transaction_id/edit': (target_id, transaction_id)->
+		detailsTarget = Targets.findOne _id: target_id
 		editTransaction = Transactions.findOne(
 			_id: transaction_id
 			target_id: target_id
 		)
-		if editTransaction
+		if detailsTarget 
+			Session.set('detailsTarget', detailsTarget)		
 			Session.set('editTransaction', editTransaction)
 			Session.set('url_return', "/targets/#{target_id}/details")
 		'transactions/edit'
