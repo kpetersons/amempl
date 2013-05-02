@@ -5,10 +5,12 @@ Meteor.methods
 		Validator.uniqueness Targets, target, 'name'
 		Validator.is_empty Targets, target, 'from'
 		Validator.is_empty Targets, target, 'to'
-		Validator.is_empty Targets, target, 'amount'
 		Validator.is_empty Targets, target, 'categories'
 		if target.isValid
 			target.from = moment(target.from, 'DD/MM/YYYY').toDate()
 			target.to = moment(target.to, 'DD/MM/YYYY').toDate()			
 			Targets.insert(_.omit(target, ['messages']))
+			_.each target.categories, (item) ->
+				TargetCategories.insert(item)
+			,@
 		target
