@@ -3,14 +3,16 @@ table.table.table-striped.table-condensed
 	thead
 		tr
 			th.span2 Name
+			th.span2 Type			
 			th Description
-			th.span1 Type
 			th.span2
 				.text-right Balance
 			th.span1
 	tbody
 		foreach categories as category
-			include 'categories_item' exposing category
+			include 'categories_item' exposing category url_prefix
 .form-actions
+	.btn-group.pull-left
+		a.btn.clear(href='#') Clear selection
 	.btn-group.pull-right
 		a.btn.btn-primary.new(href='/categories/new') New

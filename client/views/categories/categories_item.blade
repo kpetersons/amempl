@@ -1,12 +1,12 @@
-tr(class=category_selected)
+tr(class='#{category_selected} #{category_balance_class}')
 	td.span2
-		a.icon-edit(href='/categories/#{category._id}/edit')
+		a.icon-edit(href='#{url_prefix}/categories/#{category._id}/edit')
 		!&nbsp;
-		a.details(href='#')=category_name
+		a.details(href='#' data-href='#{url_prefix}/categories/#{category._id}/details')=category_name
+	td.span2=category_type		
 	td=category_description
-	td.span1=category_type
 	td.span2
 		.text-right=category_balance
 	td.span1
 		.pull-right
-			a.icon-trash.delete(href='/categories/#{category._id}/delete')
+			a.icon-trash.delete(href='#{url_prefix}/categories/#{category._id}/delete')

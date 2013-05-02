@@ -12,11 +12,11 @@ Template['categories/edit'].events=
     Meteor.call 'Categories.update', {_id: category._id, name: $('#category_name').val(), description: $('#category_description').val(), type: $('#category_type[type=radio]:checked').val()}, (error, category)->						
       if category.isValid
         $('.modal.categories.edit').modal 'hide'
-        Meteor.Router.to('/categories');
+        Meteor.Router.to('/categories')
       Session.set('editCategory', category)
 	'click button.cancel': (event)->    	
 		$('.modal.categories.edit').modal 'hide'
-		Meteor.Router.to('/categories');
+		Meteor.Router.to('/categories')
     
 Template['categories/edit'].helpers
 	messages: ->

@@ -12,7 +12,7 @@ Meteor.Router.add
 		)
 		if editTransaction
 			Session.set('editTransaction', editTransaction)
-			Session.set('url_return', "/categories/#{category_id}/details")      			
+			Session.set('url_return', "/categories/#{category_id}/details")
 		'transactions/edit'
 	'/categories/:id/delete': (_id)->
 		deleteCategory = Categories.findOne(_id: _id)
@@ -24,7 +24,6 @@ Meteor.Router.add
 		if detailsCategory
 			Session.set('detailsCategory', detailsCategory)
 			'categories/category'
-
 	'/categories/:id/edit': (_id)->
 		editCategory = Categories.findOne(_id: _id)
 		if editCategory
@@ -34,8 +33,10 @@ Meteor.Router.add
 		Session.set('newCategory', {name: 'untitled', description: ''})
 		'categories/new'
 	'/categories': ->
+		Meteor.Nav.setInactiveAll()
+		Meteor.Nav.setActive('categories_active')	
 		detailsCategory = Categories.findOne selected: true
 		if detailsCategory
 			Meteor.Router.to("/categories/#{detailsCategory._id}/details");
 			return 'categories/category'
-		'accounts/accounts'
+		'categories/categories'

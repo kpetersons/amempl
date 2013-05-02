@@ -14,6 +14,12 @@ Meteor.Router.add
 			Session.set('editTransaction', editTransaction)
 			Session.set('url_return', "/targets/#{target_id}/details")
 		'transactions/edit'
+	'/targets/:target_id/categories/:category_id/details': (target_id, category_id)->
+		detailsCategory = Transactions.findOne _id: category_id
+		if detailsCategory
+			Session.set('detailsCategory', editTransaction)
+			Session.set('url_return', "/targets/#{target_id}/details")
+		'targets/target'		
 	'/targets/:id/delete': (_id)->
 		deleteTarget = Targets.findOne(_id: _id)
 		if deleteTarget
@@ -28,12 +34,14 @@ Meteor.Router.add
 		editTarget = Targets.findOne(_id: _id)
 		if editTarget
 			Session.set('editTarget', editTarget)
-			Session.set('targetCategories', editTarget.categories)
+			Session.set('targetCategories', Categories.forTarget(editTarget).fetch())
 			'targets/edit'
 	'/targets/new': ->
 		Session.set('newTarget', {name: 'untitled', description: ''})
 		'targets/new'
 	'/targets': ->
+		Meteor.Nav.setInactiveAll()
+		Meteor.Nav.setActive('targets_active')	
 		detailsTarget = Targets.findOne selected: true
 		if detailsTarget
 			Meteor.Router.to("/targets/#{detailsTarget._id}/details");

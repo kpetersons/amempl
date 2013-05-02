@@ -7,6 +7,8 @@ Meteor.methods
 		Validator.is_empty Targets, target, 'amount'
 		Validator.is_empty Targets, target, 'categories'
 		if target.isValid
+			target.from = moment(target.from, 'DD/MM/YYYY').toDate()
+			target.to = moment(target.to, 'DD/MM/YYYY').toDate()						
 			Targets.update(target._id, $set: _.omit(target, ['messages', '_id']))
 		target
             

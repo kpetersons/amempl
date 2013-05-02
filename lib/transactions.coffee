@@ -27,6 +27,22 @@
 		transformer = Transactions.default_transform
 	Transactions.find {category_id: category._id}, {transform: transformer}
 				
+@Transactions.forCategories= (categories, transformer)->
+	console.log categories
+	unless transformer
+		transformer = Transactions.default_transform	
+	Transactions.find {category_id: {$in: categories._ids}}, {transform: transformer}
+
+@Transactions.forCategoryWithinRange= (category, range, transformer)->
+	unless transformer
+		transformer = Transactions.default_transform
+	Transactions.find {category_id: category._id, when: {$gt: range.from, $lt: range.to}}, {transform: transformer}
+				
+@Transactions.forCategoriesWithinRange= (categories, range, transformer)->
+	unless transformer
+		transformer = Transactions.default_transform	
+	Transactions.find {category_id: {$in: categories._ids}, when: {$gt: range.from, $lt: range.to}}, {transform: transformer}	
+	
 @Transactions.forUser= (user, transformer)->
 	unless transformer
 		transformer = Transactions.default_transform

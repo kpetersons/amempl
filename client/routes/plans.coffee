@@ -34,6 +34,8 @@ Meteor.Router.add
 		Session.set('newPlan', {name: 'untitled', description: ''})
 		'plans/new'
 	'/plans': ->
+		Meteor.Nav.setInactiveAll()
+		Meteor.Nav.setActive('plans_active')	
 		detailsPlan = Plans.findOne selected: true
 		if detailsPlan
 			Meteor.Router.to("/plans/#{detailsPlan._id}/details");

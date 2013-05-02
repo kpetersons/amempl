@@ -13,4 +13,6 @@ Meteor.Router.add
 		Session.set('newTransaction', {})
 		'transactions/new'
 	'/transactions': ->
-  	'transactions/transactions'
+		Meteor.Nav.setInactiveAll()
+		Meteor.Nav.setActive('transactions_active')	
+		'transactions/transactions'

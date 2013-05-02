@@ -5,17 +5,16 @@ Template['targets/form'].rendered= ()->
 	_self = @
 	$('#target_category').typeahead(
 		source: (typeahead, query)->
-			categories = Categories.find().map (item) ->
-				item.name
+			categories = Categories.find().fetch()
 			selectedCategories = Session.get('targetCategories')
 			categories = _.reject(categories, (item)-> 
 				found = _.find(selectedCategories, (sItem)->
-					return sItem.name == item
+					return sItem.name == item.name
 				,@)
 				if found
 					return true
 			,@)
-			categories
+			_.pluck(categories, 'name')
 		updater: (item) ->
 			categories = Session.get('targetCategories')
 			categories ||= []
@@ -23,10 +22,10 @@ Template['targets/form'].rendered= ()->
 			Session.set('targetCategories', categories)
 			return
 	)
-	$('#target_from').datepicker().on('changeDate', (evt)->
+	$('#target_from').datepicker(format:'dd/mm/yyyy').on('changeDate', (evt)->
 		$('#target_from').datepicker('hide')
 	)
-	$('#target_to').datepicker().on('changeDate', (evt)->
+	$('#target_to').datepicker(format:'dd/mm/yyyy').on('changeDate', (evt)->
 		$('#target_to').datepicker('hide')
 	)	
 	
@@ -85,13 +84,13 @@ Template['targets/form'].helpers
 		Session.get('targetCategories')
 	
 	target_category: ->
-		_.extend({}, Targets.findOne(_id: @target.category_id)).name		
+		_.extend({}, Targets.findOne(_id: @target.category_id)).name
 
 	target_from: ->
-		@target.from
+		moment(@target.from).format('DD/MM/YYYY')
 	
 	target_to: ->
-		@target.to
+		moment(@target.to).format('DD/MM/YYYY')
 		
 	target_amount: ->
 		accounting.formatMoney(@target.amount, '', 2)

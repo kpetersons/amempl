@@ -1,2 +1,5 @@
 Meteor.Router.add
-	'*': 'home/home'
+	'*': ->
+		Meteor.Nav.setInactiveAll()
+		Meteor.Nav.setActive('home_active')		
+		'home/home'

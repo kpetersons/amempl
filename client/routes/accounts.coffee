@@ -33,6 +33,8 @@ Meteor.Router.add
 		Session.set('newAccount', {name: 'untitled', description: ''})
 		'accounts/new'
 	'/accounts': ->
+		Meteor.Nav.setInactiveAll()
+		Meteor.Nav.setActive('accounts_active')
 		detailsAccount = Accounts.findOne selected: true
 		if detailsAccount
 			Meteor.Router.to("/accounts/#{detailsAccount._id}/details");

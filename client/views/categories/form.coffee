@@ -18,6 +18,6 @@ Template['categories/form'].helpers
     field = _.find(@category.messages, (field) ->
       field.name == 'type' 
     )
+    console.log 'typeError', field, @category.messages
     if field
       return 'error'
-        

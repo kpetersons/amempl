@@ -2,20 +2,19 @@ Template['targets/target'].target= ->
 	Session.get('detailsTarget')
   
 Template['targets/target'].transactions= ->
-	Transactions.find({category_id: {$in: _.pluck(Session.get('detailsTarget').categories, '_id')}}).fetch()	
+	detailsCategory = Categories.findOne selected: true, _id: $in: _.pluck(Session.get('detailsTarget').categories, '_id')
+	if detailsCategory
+		Transactions.forCategoryWithinRange({_id: detailsCategory._id}, {from: Session.get('detailsTarget').from, to: Session.get('detailsTarget').to},Transactions.full_transform).fetch()	
+	else
+		Transactions.forCategoriesWithinRange({_ids: _.pluck(Session.get('detailsTarget').categories, '_id')}, {from: Session.get('detailsTarget').from, to: Session.get('detailsTarget').to}, Transactions.full_transform).fetch()	
+
+Template['targets/target'].categories= ->
+	Categories.forTarget(Session.get('detailsTarget'), Categories.full_transform_range).fetch()
 
 Template['targets/target'].helpers  
-	transaction_account: ->
-		_.extend({}, Accounts.findOne(_id: @transaction.account_id)).name
-	
-	transaction_category: ->
-		_.extend({}, Categories.findOne(_id: @transaction.category_id)).name		
-
-	transaction_when: ->
-		@transaction.when
-		
-	transaction_amount: ->
-		accounting.formatMoney(@transaction.amount, '', 2)
-		
 	url_prefix: ->
-		"/targets/#{Session.get('detailsTarget')._id}"		
+		"/targets/#{Session.get('detailsTarget')._id}"
+
+Template['targets/target'].events		
+	'click a.clear': (evt) ->
+		Meteor.call 'Categories.update_unselected', {}
