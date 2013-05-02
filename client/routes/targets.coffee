@@ -15,11 +15,14 @@ Meteor.Router.add
 			Session.set('url_return', "/targets/#{target_id}/details")
 		'transactions/edit'
 	'/targets/:target_id/categories/:category_id/details': (target_id, category_id)->
-		detailsCategory = Transactions.findOne _id: category_id
-		if detailsCategory
-			Session.set('detailsCategory', editTransaction)
+		detailsTarget = Targets.findOne _id: target_id
+		detailsCategory = Categories.findOne _id: category_id
+		if detailsTarget
+			Session.set('detailsCategory', detailsCategory)
+			Session.set('detailsTarget', detailsTarget)
 			Session.set('url_return', "/targets/#{target_id}/details")
-		'targets/target'		
+			console.log detailsTarget
+			'targets/target'	
 	'/targets/:id/delete': (_id)->
 		deleteTarget = Targets.findOne(_id: _id)
 		if deleteTarget
